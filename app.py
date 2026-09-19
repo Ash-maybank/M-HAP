@@ -290,7 +290,7 @@ if uploaded_file:
             elif 'O3' in col_upper: kpi_df.at[0, col] = float(latest_row.get('O3', 0))
             elif 'CO' in col_upper: kpi_df.at[0, col] = float(latest_row.get('CO', 0))
 
-        latest_pred = model.predict(kpi_df.values)[0]
+        latest_pred = model.predict(kpi_df)[0]
         current_pm10 = float(latest_row.get('PM10', 0))
         
         if latest_pred < 100: pred_status, pred_color, rec_bg, rec_text = "🟢 Healthy", "#D4EFDF", "#E8F8F5", "<li>Air quality is satisfactory.</li><li>Good time for outdoor exercise and ventilation.</li>"
@@ -351,7 +351,7 @@ if uploaded_file:
                     elif 'O3' in col_upper: sim_df.at[0, col] = float(sim_o3)
                     elif 'CO' in col_upper: sim_df.at[0, col] = float(sim_co)
 
-                sim_pred = model.predict(sim_df.values)[0]
+                sim_pred = model.predict(sim_df)[0]
                 
                 # Determine simulation status and precaution
                 if sim_pred < 100: s_status, s_color, s_rec = "Healthy", "#D4EFDF", "Air quality is satisfactory. No precautions needed."
